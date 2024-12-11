@@ -1,4 +1,4 @@
-# The analysis reveals the following insights about gender-based disparities across various fields of study in terms of employment:
+# The analysis reveals the following insights about gender-based disparities across various fields of study:
 
 Gender Representation by Field
 
@@ -68,6 +68,3 @@ Observations
 
 Representation Disparity:
 There is relatively balanced gender representation across most fields, with slightly more females in Agriculture and Social Sciences and slightly more males in Medicine.
-
-Unemployment Disparity:
-Unemployment rates are similar between genders within each field, but minor variations exist. For example, females in Education have slightly higher unemployment rates compared to males, while the reverse is true for Agriculture and Medicine.
