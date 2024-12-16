@@ -1,0 +1,61 @@
+-- 1. Create a table for Gender Distribution
+CREATE TABLE Gender_Distribution AS
+SELECT 
+    `Field of Study`,
+    SUM(CASE WHEN Gender = 'Female' THEN 1 ELSE 0 END) AS Female_Count,
+    SUM(CASE WHEN Gender = 'Male' THEN 1 ELSE 0 END) AS Male_Count,
+    COUNT(*) AS Total_Count,
+    ROUND(SUM(CASE WHEN Gender = 'Female' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS Female_Percentage,
+    ROUND(SUM(CASE WHEN Gender = 'Male' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS Male_Percentage
+FROM 
+    Graduate_Dataset
+GROUP BY 
+    `Field of Study`;
+
+-- 2. Create a table for Gender Disparities
+CREATE TABLE Gender_Disparities AS
+SELECT 
+    `Field of Study`,
+    SUM(CASE WHEN Gender = 'Female' THEN 1 ELSE 0 END) AS Female_Count,
+    SUM(CASE WHEN Gender = 'Male' THEN 1 ELSE 0 END) AS Male_Count,
+    ABS(SUM(CASE WHEN Gender = 'Female' THEN 1 ELSE 0 END) - SUM(CASE WHEN Gender = 'Male' THEN 1 ELSE 0 END)) AS Disparity
+FROM 
+    Graduate_Dataset
+GROUP BY 
+    `Field of Study`;
+
+-- 3. Create a table for Top 5 Fields with Largest Gender Disparities
+CREATE TABLE Top_5_Disparities AS
+SELECT 
+    `Field of Study`,
+    SUM(CASE WHEN Gender = 'Female' THEN 1 ELSE 0 END) AS Female_Count,
+    SUM(CASE WHEN Gender = 'Male' THEN 1 ELSE 0 END) AS Male_Count,
+    ABS(SUM(CASE WHEN Gender = 'Female' THEN 1 ELSE 0 END) - SUM(CASE WHEN Gender = 'Male' THEN 1 ELSE 0 END)) AS Disparity
+FROM 
+    Graduate_Dataset
+GROUP BY 
+    `Field of Study`
+ORDER BY 
+    Disparity DESC
+LIMIT 5;
+
+-- 4. Combine all data into one view for exporting
+CREATE VIEW Combined_Gender_Analysis AS
+SELECT 
+    d.`Field of Study`,
+    d.Female_Count,
+    d.Male_Count,
+    d.Total_Count,
+    d.Female_Percentage,
+    d.Male_Percentage,
+    g.Disparity,
+    CASE 
+        WHEN t.`Field of Study` IS NOT NULL THEN 'Top 5 Disparity'
+        ELSE 'Regular Field'
+    END AS Field_Ranking
+FROM 
+    Gender_Distribution d
+LEFT JOIN 
+    Gender_Disparities g ON d.`Field of Study` = g.`Field of Study`
+LEFT JOIN 
+    Top_5_Disparities t ON d.`Field of Study` = t.`Field of Study`;
