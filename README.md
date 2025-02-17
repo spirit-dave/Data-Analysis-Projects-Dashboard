@@ -16,43 +16,6 @@ This repository provides a data analysis pipeline to examine gender representati
 - Examines factors contributing to these disparities.
 - Proposes actionable strategies to address the imbalances.
 
-## Directory Structure
-
-Data Analysis Local Repository/
-├── Graduate_Dataset.xlsx  # Input dataset
-
-├── Charts/
-└── Top_5_Gender_Disparities_BarChart.png  # Bar chart visualization
-
-├── Line chart/
-│   └── Gender_Disparities_LineChart.png  # Line chart visualization
-
-├── Pie_Charts/
-│   └── [Field Name]_Gender_Distribution.png  # Pie chart for each field
-
-├── Top_5_Disparities.xlsx  # Excel file with top 5 disparities
-
-## Code Overview
-Main Functions
-
-- Analyze_gender_distribution(dataframe):
-Calculates gender distribution percentages for each field.
-
-- Calculate_disparity(dataframe):
-Computes the absolute gender disparity (|Female - Male|) for each field.
-
-- Save_top_5_disparities(disparity_df):
-Extracts and saves the top 5 fields with the largest gender disparities to an Excel file.
-
-- Plot_bar_chart(top_5):
-Generates a bar chart visualizing gender representation in the top 5 fields.
-
-- Plot_line_chart(disparity_df):
-Creates a line chart of gender disparities across all fields.
-
-- Plot_pie_charts(gender_counts):
-Produces individual pie charts showing the gender distribution for each field.
-
 ## Key Performance Indicators (KPIs)
 1. Top 5 Fields with the Largest Gender Disparities
 
@@ -80,29 +43,8 @@ The analysis identifies the fields with the largest differences between male and
 
 - Supportive Environments: Create inclusive environments that empower individuals to pursue non-traditional fields.
 
-## How to Run the Analysis
-1. Install Dependencies:Ensure you have Python installed with the required libraries:
-pip install pandas matplotlib openpyxl
 
-2. Prepare the Dataset:Place your dataset (Graduate_Dataset.xlsx) in the Data Analysis Local Repository directory.
-
-3. Ensure the dataset contains the following columns:
-
-- Field of Study
-
-- Gender
-
-- Count (number of graduates)
-
-4. Run the Script Execute the script in your Python environment:
-python gender_analysis.py
-
-5. View Results
-Charts are saved in the respective directories under Data Analysis Local Repository/.
-
-The top 5 disparities are saved in Top_5_Disparities.xlsx.
-
-## Sample Outputs
+## Outputs
 1. Bar Chart
 Top 5 fields with the largest gender disparities:
 ![image](https://github.com/user-attachments/assets/46622eff-a93c-4126-8454-8cf04b9f4f18)
